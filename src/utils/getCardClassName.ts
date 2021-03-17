@@ -1,7 +1,7 @@
-import { CARD, Card } from "../types";
+import { CARD } from "../types";
 
-export function getCardClassName(card: Card): string {
-  switch (card.type) {
+export function getCardClassName(card: CARD): string {
+  switch (card) {
     case CARD.DIAMOND:
       return "diamond";
     case CARD.GOLD:

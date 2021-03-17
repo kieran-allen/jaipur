@@ -8,13 +8,10 @@ export function Market() {
   } = useContext(GameContext);
 
   return (
-    <div>
-      <p>the market has</p>
-      <div className="flex">
-        {market.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
-      </div>
+    <div className="flex">
+      {market.map((card) => (
+        <Card key={card.id} card={card} />
+      ))}
     </div>
   );
 }

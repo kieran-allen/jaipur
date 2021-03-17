@@ -7,6 +7,6 @@ type Props = {
 };
 
 export function Card({ card }: Props) {
-  const className = getCardClassName(card);
+  const className = getCardClassName(card.type);
   return <div className={`card ${className}`} />;
 }

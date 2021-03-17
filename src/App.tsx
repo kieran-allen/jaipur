@@ -3,6 +3,7 @@ import { Market } from "./components/Market";
 import { PlayerHand } from "./components/PlayerHand";
 import { PlayerHerd } from "./components/PlayerHerd";
 import { Token } from "./components/Token";
+import { Tokens } from "./components/Tokens";
 import { GameContext } from "./context/GameContext";
 import { GameState, PLAYER } from "./types";
 import { generateInitialGameState } from "./utils/generateInitialGameState";
@@ -41,12 +42,24 @@ export function App() {
 
   return (
     <GameContext.Provider value={{ state, update }}>
-      <PlayerHand player={PLAYER.P1} />
-      <PlayerHerd player={PLAYER.P1} />
-      <PlayerHand player={PLAYER.P2} />
-      <PlayerHerd player={PLAYER.P2} />
-      <Market />
-      <Token token={state.clothTokens} />
+      <h1 className="m-4 text-4xl font-bold text-white">
+        Cards left: {state.deck.length}
+      </h1>
+
+      <div className="grid grid-cols-9">
+        <div className="border-r-2 col-span-4">
+          <h2 className="m-4 text-3xl font-bold text-white">🃏 Player hand</h2>
+          <PlayerHand player={PLAYER.P1} />
+          <PlayerHerd player={PLAYER.P1} />
+        </div>
+        <div className="col-span-1">
+          <Tokens />
+        </div>
+        <div className="col-span-4">
+          <h2 className="m-4 text-3xl font-bold text-white">🃏 Market hand</h2>
+          <Market />
+        </div>
+      </div>
     </GameContext.Provider>
   );
 }

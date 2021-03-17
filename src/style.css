@@ -40,11 +40,15 @@
   }
 
   .token {
-    @apply w-16 h-16 rounded-full shadow m-4 cursor-pointer bg-red-500;
+    @apply w-16 h-16 rounded-full shadow m-4 cursor-pointer inline-block text-center align-middle;
   }
   .token:hover {
     @apply transform scale-110;
   }
+}
+
+body {
+  @apply bg-gray-800;
 }
 
 

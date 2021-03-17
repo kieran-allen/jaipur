@@ -12,13 +12,10 @@ export function PlayerHand({ player }: Props) {
   const { hand } = state[player];
 
   return (
-    <div>
-      <p>player {player}</p>
-      <div className="flex">
-        {hand.map((card) => (
-          <Card key={card.id} card={card} /> 
-        ))}
-      </div>
+    <div className="flex">
+      {hand.map((card) => (
+        <Card key={card.id} card={card} />
+      ))}
     </div>
   );
 }
