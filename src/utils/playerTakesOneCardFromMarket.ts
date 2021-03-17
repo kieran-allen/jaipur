@@ -1,4 +1,4 @@
-import { Card, PLAYER, PlayerCards } from "../types";
+import { CARD, Card, PLAYER, PlayerCards } from "../types";
 import { addCardToPlayerCards } from "./addCardToPlayerCards";
 import { isCamel } from "./isCamel";
 
@@ -7,8 +7,17 @@ export function playerTakesOneCardFromMarket(
   market: Card[],
   cardIDToPickup: string,
   playerCards: PlayerCards,
-  player: PLAYER
-) {
+  player: PLAYER,
+  cardsIdsToIgnore: string[] = []
+): {
+  deck: Card[];
+  market: Card[];
+  [x: number]: {
+    hand: Card[];
+    herd: Card[];
+    selectedCards: Card[];
+  };
+} {
   const cardToTakeIndex = market.findIndex(
     (card) => card.id === cardIDToPickup
   );
@@ -19,13 +28,13 @@ export function playerTakesOneCardFromMarket(
       [player]: playerCards,
     };
   }
-
+  const cardToTake = market[cardToTakeIndex];
   const newPlayerHand = addCardToPlayerCards(
     playerCards,
     market[cardToTakeIndex]
   );
 
-  if (newPlayerHand.hand.length > 7 && !isCamel(market[cardToTakeIndex])) {
+  if (newPlayerHand.hand.length > 7 && !isCamel(cardToTake)) {
     return {
       deck: [deckHead, ...deckLeftover],
       market,
@@ -37,6 +46,31 @@ export function playerTakesOneCardFromMarket(
     if (i !== cardToTakeIndex) return card;
     return deckHead;
   });
+
+  if (isCamel(cardToTake)) {
+    // find the next camel
+    const camelToPickup = newMarket.find((card) => {
+      if (cardsIdsToIgnore.includes(card.id)) {
+        return false;
+      }
+      return card.type === CARD.CAMEL;
+    });
+    if (camelToPickup) {
+      return playerTakesOneCardFromMarket(
+        deckLeftover,
+        newMarket,
+        camelToPickup.id,
+        newPlayerHand,
+        player,
+        [deckHead.id, ...cardsIdsToIgnore]
+      );
+    }
+    return {
+      deck: deckLeftover,
+      market: newMarket,
+      [player]: newPlayerHand,
+    };
+  }
   return {
     deck: deckLeftover,
     market: newMarket,

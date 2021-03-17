@@ -48,15 +48,16 @@ export function App() {
 
       <div className="grid grid-cols-9">
         <div className="border-r-2 col-span-4">
-          <h2 className="m-4 text-3xl font-bold text-white">🃏 Player hand</h2>
+          <h2 className="m-4 text-3xl font-bold text-white">🖐 Player hand</h2>
           <PlayerHand player={PLAYER.P1} />
+          <h2 className="m-4 text-3xl font-bold text-white">🐪 Player herd</h2>
           <PlayerHerd player={PLAYER.P1} />
         </div>
         <div className="col-span-1">
           <Tokens />
         </div>
         <div className="col-span-4">
-          <h2 className="m-4 text-3xl font-bold text-white">🃏 Market hand</h2>
+          <h2 className="m-4 text-3xl font-bold text-white">🖐 Market hand</h2>
           <Market />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Card, CARD, PLAYER, PlayerCards } from "../types";
+import { Card, PLAYER, PlayerCards } from "../types";
 import { playerPicksUpCard } from "./playerPicksUpCard";
 
 export function playerPicksUpCardTimes(

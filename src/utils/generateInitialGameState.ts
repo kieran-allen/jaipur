@@ -34,14 +34,17 @@ export function generateInitialGameState(): GameState {
     ),
 
     market: generateCards(CARD.CAMEL, 3),
+    selectedMarketCards: [],
 
     [PLAYER.P1]: {
       hand: [],
       herd: [],
+      selectedCards: [],
     } as PlayerCards,
     [PLAYER.P2]: {
       hand: [],
       herd: [],
+      selectedCards: [],
     } as PlayerCards,
   };
 }

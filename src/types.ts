@@ -30,6 +30,7 @@ export type StandardCards = CARD.CLOTH | CARD.SPICE | CARD.LEATHER;
 export type PlayerCards = {
   hand: Card[];
   herd: Card[];
+  selectedCards: Card[];
 };
 
 export type Token<T> = {
@@ -54,6 +55,7 @@ export type GameState = {
   fiveBonusTokens: Token<BONUS_TOKENS.FIVE>[];
 
   market: Card[];
+  selectedMarketCards: Card[];
 
   [PLAYER.P1]: PlayerCards;
   [PLAYER.P2]: PlayerCards;

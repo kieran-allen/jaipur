@@ -4,11 +4,11 @@
 
 @layer components {
   .card {
-    @apply w-32 h-44 rounded shadow m-4 cursor-pointer;
+    @apply transform w-32 h-44 rounded shadow m-4 cursor-pointer;
   }
 
   .card:hover {
-    @apply transform scale-110;
+    @apply scale-110;
   }
 
   .diamond {

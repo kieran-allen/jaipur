@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GameContext } from "../context/GameContext";
 import { playerTakesOneCardFromMarket } from "../utils/playerTakesOneCardFromMarket";
 import { Card } from "./Card";
 import { Card as CardType, PLAYER } from "../types";
+import { MarketContext } from "../context/MarketContext";
 
 export function Market() {
+  const [ isCamelHovered, setIsCamelHovered ] = useState(false);
   const { state, update } = useContext(GameContext);
 
   const onCardClick = (card: CardType) => {
@@ -13,7 +15,7 @@ export function Market() {
       state.market,
       card.id,
       state[PLAYER.P1],
-      PLAYER.P1
+      PLAYER.P1,
     );
     update({
       ...state,
@@ -24,10 +26,12 @@ export function Market() {
   };
 
   return (
-    <div className="flex">
-      {state.market.map((card) => (
-        <Card key={card.id} card={card} onClick={() => onCardClick(card)} />
-      ))}
-    </div>
+    <MarketContext.Provider value={{ isCamelHovered, setIsCamelHovered }}>
+      <div className="flex">
+        {state.market.map((card) => (
+          <Card key={card.id} card={card} onClick={() => onCardClick(card)} />
+        ))}
+      </div>
+    </MarketContext.Provider>
   );
 }
